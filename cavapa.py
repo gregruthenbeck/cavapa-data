@@ -103,6 +103,32 @@ def readSimpleCSV(csvFilepath, fps = 1, intervalDurationSeconds = 1):
 				print("Skipping CSV line ", line, ": ", row)
 		return data
 
+# 
+def readSimple2ColCSV(csvFilepath, fps = 1, intervalDurationSeconds = 1):
+	downSample = fps * intervalDurationSeconds
+	data = []
+	with open(csvFilepath, newline='') as csvfile:
+		testreader = csv.reader(csvfile, delimiter=',')
+		line = 0
+		count = 0
+		total = 0
+		for row in testreader:
+			line = line + 1
+			try:
+				if row and len(row) > 1:
+					#row[1] = row[1].strip(', ')
+					#dec = decimal.Parse(row[0]);
+					d = float(row[1])
+					count = count + 1
+					if count % downSample == 0:
+						data.append(d)
+						total = d
+					else:
+						total = total + d
+			except:
+				print("Skipping CSV line ", line, ": ", row)
+		return data
+
 # Read Cavapa movement score from CSV (as output from cavapaGPU)
 # Expected line format:
 # 25,00:00:01,35
