@@ -10,6 +10,7 @@ numpy = "*"
 scipy = "*"
 panda = "*"
 matplotlib = "*"
+pandas = "*"
 
 [requires]
 python_version = "3.8"
