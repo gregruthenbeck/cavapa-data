@@ -16,3 +16,13 @@ Generates the following charts:
 | Fig.3 - CAVAPA, Observed, for an Outdoor Video  |
 
 This GitHub Repo is a continuation of [this GitHub Gist](https://gist.github.com/gregruthenbeck/32556e31418e9c9d83de0b6989b9999f).
+
+## Quickstart
+
+```
+git clone git@github.com:gregruthenbeck/cavapa-data.git
+cd cavapa-data
+pipenv install
+pipenv shell
+jupyter-notebook cavapa_data_jupyter_notebook.ipynb
+```
