@@ -158,13 +158,21 @@ def downSample(data: list, dsCount: int) -> list:
 			total = 0
 	return ret
 
-def trimToSameLen(dataDict):
-	minLen = 1E31
-	for k,v in dataDict.items():
-		minLen = min(minLen, len(v))
+def trimToSameLen(dataDict, targetLen = 0):
+	if not targetLen:
+		minLen = 1E31
+		for k,v in dataDict.items():
+			minLen = min(minLen, len(v))
+		targetLen = minLen
 	ret = {}
 	for k,v in dataDict.items():
-		ret[k] = v[0:minLen]
+		if len(v) >= targetLen:
+			ret[k] = v[0:targetLen]
+		else: # pad arrays shorter than target with copied last value
+			arr = v
+			for i in range(0, targetLen - len(v)):
+				arr.append(v[len(v) - 1])
+			ret[k] = arr
 	return ret
 
 def trimArgsToSameLen(*args):
